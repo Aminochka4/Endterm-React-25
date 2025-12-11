@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { FaHome, FaUserAstronaut, FaSignInAlt, FaInfoCircle, FaUser } from "react-icons/fa";
+import { FaHome, FaUserAstronaut, FaSignInAlt, FaInfoCircle, FaUser, FaHeart } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import "./Header.css";
 import { useEffect, useState } from "react";
 import { subscribeProfile, getProfile } from "../services/profileService";
+import { useFavorites } from "../hooks/useFavorites";
 
 export default function Header() {
   const { user, logout } = useAuth();
@@ -15,15 +16,13 @@ export default function Header() {
       return;
     }
 
-    // 1️⃣ Сначала пробуем взять фото из localStorage
     const cached = localStorage.getItem(`photo_${user.uid}`);
     if (cached) setPhoto(cached);
 
-    // 2️⃣ Подписка на Firestore, чтобы обновлять фото при изменении
     const unsubscribe = subscribeProfile(user.uid, (data) => {
       if (data?.photoURL) {
         setPhoto(data.photoURL);
-        localStorage.setItem(`photo_${user.uid}`, data.photoURL); // обновляем кеш
+        localStorage.setItem(`photo_${user.uid}`, data.photoURL);
       }
     });
 
@@ -55,6 +54,10 @@ export default function Header() {
 
         <Link to="/characters" className="header-link">
           <FaUserAstronaut className="icon" /> Characters
+        </Link>
+
+        <Link to="/favorites" className="header-link">
+          <FaHeart className="icon" /> Favorites
         </Link>
 
         {user ? (

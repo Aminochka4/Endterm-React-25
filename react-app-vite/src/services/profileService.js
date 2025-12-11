@@ -25,3 +25,19 @@ export function subscribeProfile(uid, callback) {
     callback(snap.data());
   });
 }
+
+export async function getProfileFavorites(uid) {
+  const cached = localStorage.getItem(`favorites_${uid}`);
+  if (cached) return JSON.parse(cached);
+
+  const userRef = doc(db, "users", uid);
+  const snap = await getDoc(userRef);
+  const favorites = snap.exists() && snap.data().favorites ? snap.data().favorites : [];
+  return favorites;
+}
+
+export async function saveProfileFavorites(uid, favorites) {
+  const userRef = doc(db, "users", uid);
+  await setDoc(userRef, { favorites }, { merge: true });
+  localStorage.setItem(`favorites_${uid}`, JSON.stringify(favorites));
+}

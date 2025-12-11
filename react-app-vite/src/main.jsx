@@ -14,6 +14,7 @@ import App from "./App.jsx";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import Favorites from './pages/Favorites.jsx';
 
 
 const router = createBrowserRouter([
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
       { path: "/characters/:id", element: <CharacterDetails /> },
       { path: "*", element: <NotFoundPage /> },
       { path: "/signup", element: <Signup />},
-      { path: "/profile", element: <Profile />}
+      { path: "/profile", element: <Profile />},
+      { path: "/favorites", element: <Favorites />},
     ],
   },
   { path: "*", element: <NotFoundPage /> },
