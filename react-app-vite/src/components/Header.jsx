@@ -2,9 +2,33 @@ import { Link } from "react-router-dom";
 import { FaHome, FaUserAstronaut, FaSignInAlt, FaInfoCircle, FaUser } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import "./Header.css";
+import { useEffect, useState } from "react";
+import { subscribeProfile, getProfile } from "../services/profileService";
 
 export default function Header() {
   const { user, logout } = useAuth();
+  const [photo, setPhoto] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      setPhoto(null);
+      return;
+    }
+
+    // 1️⃣ Сначала пробуем взять фото из localStorage
+    const cached = localStorage.getItem(`photo_${user.uid}`);
+    if (cached) setPhoto(cached);
+
+    // 2️⃣ Подписка на Firestore, чтобы обновлять фото при изменении
+    const unsubscribe = subscribeProfile(user.uid, (data) => {
+      if (data?.photoURL) {
+        setPhoto(data.photoURL);
+        localStorage.setItem(`photo_${user.uid}`, data.photoURL); // обновляем кеш
+      }
+    });
+
+    return () => unsubscribe();
+  }, [user]);
 
   const handleLogout = () => {
     logout();
@@ -35,9 +59,19 @@ export default function Header() {
 
         {user ? (
           <>
-            <Link to="/profile" className="header-link">
+            <Link to="/profile" className="header-link profile-link">
+              {photo && (
+                <img
+                  src={photo}
+                  alt="Profile"
+                  className="header-avatar"
+                />
+              )}
               <FaUser className="icon" /> Profile
             </Link>
+
+            <span className="header-user-email">{user.email}</span>
+
             <button onClick={handleLogout} className="header-link logout-button">
               Logout
             </button>
