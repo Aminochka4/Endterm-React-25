@@ -1,0 +1,23 @@
+.favorites-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.favorites-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #6e8efb;
+  text-align: center;
+}
+
+.favorites-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}

@@ -1,0 +1,25 @@
+.home-container {
+  display: flex;
+  align-items: center;        
+  justify-content: center;
+  gap: 40px;                 
+  padding: 40px;
+  background: #ffffff;       
+  min-height: 80vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.image-grid {
+  width: 500px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+  max-width: 450px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #1e293b;     
+}

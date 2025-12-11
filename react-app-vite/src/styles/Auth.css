@@ -1,0 +1,117 @@
+.auth-container,
+.profile-container,
+.notfound-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  padding: 30px 25px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-container h2,
+.profile-container h2,
+.notfound-container h2 {
+  margin-bottom: 20px;
+  color: #444444;
+}
+
+.auth-container form,
+.profile-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-container input,
+.profile-container input {
+  padding: 12px 15px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.auth-container input:focus,
+.profile-container input:focus {
+  border-color: #0077ff;
+}
+
+.auth-container button,
+.profile-container button {
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #0077ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.auth-container button:hover,
+.profile-container button:hover {
+  background-color: #005ecb;
+  transform: scale(1.05);
+}
+
+.auth-container p,
+.profile-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.auth-container a,
+.profile-container a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.auth-container a:hover,
+.profile-container a:hover {
+  text-decoration: underline;
+}
+
+.auth-container p.error,
+.profile-container p.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.notfound-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  gap: 15px;
+}
+
+.notfound-container h1 {
+  font-size: 80px;
+  color: #ff4d4d;
+}
+
+.notfound-container h2 {
+  font-size: 24px;
+  color: #444444;
+}
+
+.notfound-container a {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 20px;
+  background-color: #0077ff;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.notfound-container a:hover {
+  background-color: #005ecb;
+}
