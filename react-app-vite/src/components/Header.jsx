@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { FaHome, FaUserAstronaut, FaSignInAlt, FaInfoCircle, FaUser, FaHeart } from "react-icons/fa";
+import { FaHome, FaUserAstronaut, FaSignInAlt, FaInfoCircle, FaUser } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import "./Header.css";
 
 export default function Header() {
-  const { currentUser, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -33,11 +33,7 @@ export default function Header() {
           <FaUserAstronaut className="icon" /> Characters
         </Link>
 
-        <Link to="/favorites" className="header-link">
-          <FaHeart className="icon" /> Favorites
-        </Link>
-
-        {currentUser ? (
+        {user ? (
           <>
             <Link to="/profile" className="header-link">
               <FaUser className="icon" /> Profile

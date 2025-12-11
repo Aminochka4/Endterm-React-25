@@ -10,7 +10,6 @@ import Home from './pages/Home.jsx';
 import Profile from  './pages/Profile.jsx'
 import CharacterList from './components/CharacterList.jsx';
 import CharacterDetails from './pages/CharacterDetails.jsx';
-import Favorites from "./pages/Favorites.jsx";
 import App from "./App.jsx";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Provider } from "react-redux";
@@ -29,8 +28,7 @@ const router = createBrowserRouter([
       { path: "/characters/:id", element: <CharacterDetails /> },
       { path: "*", element: <NotFoundPage /> },
       { path: "/signup", element: <Signup />},
-      { path: "/profile", element: <Profile />},
-      { path: "/favorites", element: <Favorites /> },
+      { path: "/profile", element: <Profile />}
     ],
   },
   { path: "*", element: <NotFoundPage /> },

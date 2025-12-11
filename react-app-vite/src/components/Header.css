@@ -2,10 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     padding: 15px 40px;
     color: #333;
-    border-bottom: 1px solid #e5e5e5; 
+    border-bottom: 1px solid #e5e5e5;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -46,7 +46,7 @@
 }
 
 .header-link:hover {
-    color: #1a73e8; 
+    color: #1a73e8;
 }
 
 .icon {
