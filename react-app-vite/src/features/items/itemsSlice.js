@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCharactersService, getCharacterById } from "../../services/itemsService";
+import { fetchCharacters, fetchCharacterById } from "../../services/apiService";
 
 export const fetchItems = createAsyncThunk(
     "items/fetchItems",
     async ({ page, query }, { rejectWithValue }) => {
         try {
-            const data = await fetchCharactersService(page, query);
+            const data = await fetchCharacters(page, query);
             return {
                 results: data.results,
                 hasMore: data.info.next !== null,
@@ -20,7 +20,7 @@ export const fetchItemById = createAsyncThunk(
     "items/fetchItemById",
     async (id, { rejectWithValue }) => {
         try {
-            return await getCharacterById(id);
+            return await fetchCharacterById(id);
         } catch (err) {
             return rejectWithValue(err.message);
         }

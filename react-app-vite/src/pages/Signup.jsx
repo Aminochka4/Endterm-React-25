@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/Auth.css";
+import { validateEmail, validatePassword } from "../utils/validators";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -12,18 +13,6 @@ export default function Signup() {
 
   const { signup } = useAuth();
   const navigate = useNavigate();
-
-  const validatePassword = (password) => {
-    const length = password.length >= 8;
-    const special = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    const number = /\d/.test(password);
-
-    if (!length) return "Password must be at least 8 characters.";
-    if (!special) return "Password must contain at least one special character.";
-    if (!number) return "Password must contain at least one number.";
-
-    return null;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
