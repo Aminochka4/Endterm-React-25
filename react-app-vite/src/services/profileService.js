@@ -26,18 +26,30 @@ export function subscribeProfile(uid, callback) {
   });
 }
 
-export async function getProfileFavorites(uid) {
-  const cached = localStorage.getItem(`favorites_${uid}`);
-  if (cached) return JSON.parse(cached);
+// export async function getProfileFavorites(uid) {
+//   const userRef = doc(db, "users", uid);
+//   const snap = await getDoc(userRef);
 
+//   return snap.exists() && snap.data().favorites
+//     ? snap.data().favorites
+//     : [];
+// }
+
+export async function getProfileFavorites(uid) {
   const userRef = doc(db, "users", uid);
   const snap = await getDoc(userRef);
-  const favorites = snap.exists() && snap.data().favorites ? snap.data().favorites : [];
-  return favorites;
+
+  return snap.exists() && snap.data().favorites
+    ? snap.data().favorites
+    : [];
 }
+
 
 export async function saveProfileFavorites(uid, favorites) {
   const userRef = doc(db, "users", uid);
   await setDoc(userRef, { favorites }, { merge: true });
-  localStorage.setItem(`favorites_${uid}`, JSON.stringify(favorites));
+  // localStorage.setItem(`favorites_${uid}`, JSON.stringify(favorites));
+  // remove — авторизованному пользователю НЕ НУЖЕН local backup
+  localStorage.removeItem("local_favorites");
+
 }
